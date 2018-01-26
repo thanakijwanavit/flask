@@ -3,10 +3,14 @@ import requests
 
 
 def on():
-	requests.get('http://10.0.1.169/turnledon')
+	r=requests.get('http://10.0.1.169/turnledon')
+	return r.text
 
 def off():
-	requests.get('http://10.0.1.169/turnledoff')
+	r=requests.get('http://10.0.1.169/turnledoff')
+	return r.text
+def test():
+	return 'abc'
 
 '''while True:
 	usercommand = input('on or off\n')

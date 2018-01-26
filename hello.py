@@ -4,16 +4,20 @@ import turnonlight, requests
 
 app = Flask(__name__)
 rootpage = '''
-<form action="/action_page.php">
-  First name:<br>
-  <input type="text" name="firstname" value="Mickey"><br>
-  Last name:<br>
-  <input type="text" name="lastname" value="Mouse"><br><br>
-  <input type="submit" value="Submit">
+<form>
+  <input type="submit" formaction="/lighton" value="lighton">  
+  <input type="submit" formaction="/lightoff" value="lightoff">
 </form>
 '''
 
+returntopage = '''
+<form>
+  <input type="submit" formaction="/lighton" value="lighton">
+  <input type="submit" formaction="/lightoff" value="lightoff">
+  <input type="submit" formaction="/" value="back">
+</form>
 
+'''
 
 
 
@@ -22,15 +26,16 @@ def hello():
 	return rootpage
 
 @app.route("/light")
+def lightstatus():
 	return 'light is on'
 
 @app.route("/lightoff")
-def lightoff()
-	turnonlight.off()
-	return 'light is off'
+def lightoff():
+	value =turnonlight.off()
+	return returntopage
 
 @app.route("/lighton")
-def light():
-	turnonlight.on()
-	return 'light is on'
+def lighton():
+	value =turnonlight.on()
+	return returntopage
 
