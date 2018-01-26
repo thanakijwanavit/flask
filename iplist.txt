@@ -1,4 +1,0 @@
-orangpizerofactory 23456
-raspberrypi home 1425
-headlesspi 4256
-macminihome 13425
