@@ -4,6 +4,7 @@ import turnonlight, requests
 
 app = Flask(__name__)
 rootpage = '''
+<h1>%s</h1>
 <form>
   <input type="submit" formaction="/lighton" value="lighton">  
   <input type="submit" formaction="/lightoff" value="lightoff">
@@ -11,6 +12,7 @@ rootpage = '''
 '''
 
 returntopage = '''
+<h1>%s</h1>
 <form>
   <input type="submit" formaction="/lighton" value="lighton">
   <input type="submit" formaction="/lightoff" value="lightoff">
@@ -21,9 +23,11 @@ returntopage = '''
 
 
 
+
 @app.route("/")
 def hello():
-	return rootpage
+	lightstatus = turnonlight.status()
+	return rootpage % lightstatus
 
 @app.route("/light")
 def lightstatus():
@@ -32,10 +36,12 @@ def lightstatus():
 @app.route("/lightoff")
 def lightoff():
 	value =turnonlight.off()
-	return returntopage
+	lightstatus = turnonlight.status()
+	return returntopage % lightstatus
 
 @app.route("/lighton")
 def lighton():
 	value =turnonlight.on()
-	return returntopage
+	lightstatus = turnonlight.status()
+	return returntopage % lightstatus
 

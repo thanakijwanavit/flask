@@ -1,13 +1,27 @@
 #!/usr/bin/env python3
 import requests
-
+import signal
+def handler(signum, frame):
+	print('timeout')
+	raise Exception('time is up')
 
 def on():
-	r=requests.get('http://10.0.1.169/turnledon')
-	return r.text
-
+	try:
+		signal.signal(signal.SIGALRM, handler)
+		signal.alarm(5)
+		r=requests.get('http://10.0.1.169/turnledon')
+		#r.raise_for_status()
+		signal.alarm(0)
+		return r.text
+	except:
+		#return "page not found"
+		print ('error')
 def off():
+	signal.signal(signal.SIGALRM, handler)
+	signal.alarm(5)
 	r=requests.get('http://10.0.1.169/turnledoff')
+	#r.raise_for_status()
+	signal.alarm(0)
 	return r.text
 def test():
 	return 'abc'
@@ -22,3 +36,6 @@ def test():
 		print('press on or off')
 		continue
 '''
+def status():
+	r=requests.get('http://10.0.1.169/lightstatus')
+	return r.text
