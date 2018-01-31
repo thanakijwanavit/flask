@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 from flask import Flask
 import turnonlight, requests
-
+from flask_ask import Ask, statement
 app = Flask(__name__)
+ask = Ask(app, '/')
+
 rootpage = '''
 <h1>%s</h1>
 <form>
@@ -45,3 +47,14 @@ def lighton():
 	lightstatus = turnonlight.status()
 	return returntopage % lightstatus
 
+@ask.launch 
+@ask.intent("LightOn") 
+def on(): 
+	value =turnonlight.on()
+	lightstatus = turnonlight.status()
+	return statement("Hall light turned on.") 
+@ask.intent("LightOff") 
+def off(): 
+	value =turnonlight.off()
+	lightstatus = turnonlight.status()
+	return statement("Hall light turned off.")
