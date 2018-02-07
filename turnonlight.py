@@ -37,5 +37,5 @@ def test():
 		continue
 '''
 def status():
-	r=requests.get('http://10.0.1.169/lightstatus')
+#	r=requests.get('http://10.0.1.169/lightstatus')
 	return "lightstatus"
