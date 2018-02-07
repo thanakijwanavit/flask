@@ -12,7 +12,7 @@ def on():
 		r=requests.get('http://blynk-cloud.com/56827b4bcc60404f842f2775cd1539e7/update/V3?value=1')
 		#r.raise_for_status()
 		signal.alarm(0)
-		return r.text
+		return "light is on"
 	except:
 		#return "page not found"
 		print ('error')
@@ -22,7 +22,7 @@ def off():
 	r=requests.get('http://blynk-cloud.com/56827b4bcc60404f842f2775cd1539e7/update/V3?value=0')
 	#r.raise_for_status()
 	signal.alarm(0)
-	return r.text
+	return "light is off"
 def test():
 	return 'abc'
 
@@ -38,4 +38,4 @@ def test():
 '''
 def status():
 	r=requests.get('http://10.0.1.169/lightstatus')
-	return r.text
+	return "lightstatus"
