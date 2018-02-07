@@ -9,7 +9,7 @@ def on():
 	try:
 		signal.signal(signal.SIGALRM, handler)
 		signal.alarm(5)
-		r=requests.get('http://10.0.1.169/turnledon')
+		r=requests.get('http://blynk-cloud.com/56827b4bcc60404f842f2775cd1539e7/update/V3?value=1')
 		#r.raise_for_status()
 		signal.alarm(0)
 		return r.text
@@ -19,7 +19,7 @@ def on():
 def off():
 	signal.signal(signal.SIGALRM, handler)
 	signal.alarm(5)
-	r=requests.get('http://10.0.1.169/turnledoff')
+	r=requests.get('http://blynk-cloud.com/56827b4bcc60404f842f2775cd1539e7/update/V3?value=0')
 	#r.raise_for_status()
 	signal.alarm(0)
 	return r.text
