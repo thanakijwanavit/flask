@@ -51,10 +51,14 @@ def lighton():
 @ask.intent("LightOn") 
 def on(): 
 	value =turnonlight.on()
-	lightstatus = turnonlight.status()
-	return statement("Hall light turned on.") 
+#	lightstatus = turnonlight.status()
+	return statement(value) 
 @ask.intent("LightOff") 
 def off(): 
 	value =turnonlight.off()
+#	lightstatus = turnonlight.status()
+	return statement(value)
+@ask.intent("LightStatus")
+def status():
 	lightstatus = turnonlight.status()
-	return statement("Hall light turned off.")
+	return statement(lightstatus)
